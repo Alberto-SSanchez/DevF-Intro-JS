@@ -9,8 +9,8 @@ var numberTwo = prompt("Enter another number");
 console.log("The result of substracting the second number is ->", numberOne - numberTwo);
 
 //Circle area
-var radius = 5.3;
-var pi = Math.PI;
+const radius = 5.3;
+const pi = Math.PI;
 console.log("Area of circle of radius 5.3 is ->", pi*(radius**2))
 
 //Rhombus
