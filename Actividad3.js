@@ -11,10 +11,14 @@ if (age >= 18){
     }
 }
 
+else{
+    console.log("You're NOT allowed to enter");
+}
+
 // Exercise 2
 
-var player1 = prompt("Introduce Piedra, Papel o Tijera"); //We assume we receive the string as it is (first letter is uppercase)
-var player2 = prompt("Introduce Piedra, Papel o Tijera");
+var player1 = prompt("Player1 enter 'Piedra, Papel o Tijera'"); //We assume we receive the string as it is (first letter is uppercase)
+var player2 = prompt("Player2 enter 'Piedra, Papel o Tijera'");
 
 if (player1 == "Piedra"){
     switch(player2){
