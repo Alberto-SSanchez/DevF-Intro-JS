@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/styles.css">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="container">
+            <div class="display">
+                <input type="text" name="display" id="display" placeholder="0.0">
+            </div>
+            
+            <div class="buttons">
+                <div class="row">
+                    <button class="button num" id="btn7" onclick="evento7()">7</button>
+                    <button class="button num" id="btn8" onclick="evento8()">8</button>
+                    <button class="button num" id="btn9" onclick="evento9()">9</button>
+                    <button class="button op" id="btnDiv" onclick="eventoDiv()">/</button>
+                </div>
+                <div class="row">
+                    <button class="button num" id="btn4" onclick="evento4()">4</button>
+                    <button class="button num" id="btn5" onclick="evento5()">5</button>
+                    <button class="button num" id="btn6" onclick="evento6()">6</button>
+                    <button class="button op" id="btnSubs" onclick="eventoSubs()">-</button>
+                </div>
+                <div class="row">
+                    <button class="button num" id="btn1" onclick="evento1()">1</button>
+                    <button class="button num" id="btn2" onclick="evento2()">2</button>
+                    <button class="button num" id="btn3" onclick="evento3()">3</button>
+                    <button class="button op" id="btnAdd" onclick="eventoAdd()">+</button>
+                </div>
+                <div class="row">
+                    <button class="button op" id="btnAC" onclick="eventoAC()">AC</button>
+                    <button class="button num" id="btn0" onclick="evento0()">0</button>
+                    <button class="button op" id="btnDec" onclick="eventoDecimal()">.</button>
+                    <button class="button op" id="btnEqu" onclick="eventoEqu()">=</button>
+                </div>
+            </div>
+
+        <script src="./js/app.js"></script>
+    </body>
+</html>
