@@ -94,7 +94,5 @@ buttons.addEventListener('click', (e) =>{
     if(result.length > 0){
         displayCryptos(result);
     } 
-    else{
-        displayNoResult();
-    }
+
 })
