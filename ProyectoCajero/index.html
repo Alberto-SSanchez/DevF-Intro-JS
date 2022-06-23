@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <div class="col sides">
+                    <button id="checkBalance" type="button" class="btn btn-num w-100 mb-1 btn-light" value="checkBalance">CHECK BALANCE</button>
+                    <button id="deposit" type="button" class="btn btn-num w-100 mb-1 btn-light" value="deposit">DEPOSIT</button>
+                    <button id="withdraw" type="button" class="btn btn-num w-100 btn-light" value="withdraw">WITHDRAW</button>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <div id="interface" class="d-flex flex-column align-items-center justify-content-center">
+                        <!-- <div id="welcome">
+                            <h1>WELCOME</h1>
+                            <p>Choose an account <br>1.- <br>2.- <br>3- </p>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col sides"></div>
+            </div>
+
+            <div class="row">
+                <div class="col" id="keypad">
+                    <div class="d-flex justify-content-center">
+                        <button id="one" type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="1">1</button>
+                        <button id="two"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="2">2</button>
+                        <button id="three"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="3">3</button>
+                        <button id="cancel"  type="button" class="btn btn-danger" value="cancel">CANCEL</button>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="four"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="4">4</button>
+                        <button id="five"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="5">5</button>
+                        <button id="six"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="6">6</button>
+                        <button id="clear"  type="button" class="btn btn-warning" value="clear">CLEAR</button>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="seven"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="7">7</button>
+                        <button id="eight"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="8">8</button>
+                        <button id="nine"  type="button" class="btn btn-num m-1 btn-lg nmbr btn-light" value="9">9</button>
+                        <button id="enter"  type="button" class="btn btn-success" value="enter">ENTER</button>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="zero"  type="button" class="btn btn-num m-1 btn-lg w-25 nmbr btn-light" value="0">0</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./app.js"></script>
+    <script src="./database.js"></script>
+</body>
+</html>

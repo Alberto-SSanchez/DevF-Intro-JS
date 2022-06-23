@@ -1,0 +1,31 @@
+/* .btn-num{
+    border: 1px solid rgb(117, 117, 117);
+} */
+
+
+#interface{
+    background-color: rgb(0, 149, 255);
+    width: 600px;
+    height: 350px;
+    border: 30px solid rgb(60, 60, 60);
+}
+
+#nip, .deposit, .withdraw{
+    background-color: white;
+    height: 30px;
+    width: 100px;
+}
+
+body{ min-width: 800px;}
+
+#keypad{
+    background-color: rgb(88, 88, 88);
+}
+
+.sides{
+    background-color: rgb(136, 136, 136);
+}
+
+.deposit, .withdraw, #nip{
+    border-radius: 10px;
+}
