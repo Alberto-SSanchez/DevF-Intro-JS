@@ -15,17 +15,17 @@ let actualNip = '';
 /*-------------------------------------------------------------------------------------------------*/
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    welcome();
+    welcome(); //calling welcome function
 })
 /*-------------------------------------------------------------------------------------------------*/
-function welcome(){
+function welcome(){ //displaying welcome screen
     localStorage.setItem('atmStatus', 'welcome');
     atmStatus = localStorage.getItem('atmStatus');
 
     allButtons.forEach(button => {
         button.disabled=true;
     })
-
+    //disabling non required buttons
     document.getElementById('one').disabled=false;
     document.getElementById('two').disabled=false;
     document.getElementById('three').disabled=false;
@@ -40,28 +40,28 @@ function welcome(){
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-function clearScreen(){
+function clearScreen(){ //clear screen to avoid appending elements
     screenArea.innerHTML = '';
     while(screenArea.firstChild){screenArea.firstChild.remove()}
     
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-function login(){
+function login(){ 
 
     allButtons.forEach(button => {
-        
-        if(button.id != 'deposit' && button.id != 'checkBalance' && button.id != 'withdraw' && button.id)
+        //disabling operations buttons
+        if(button.id != 'deposit' && button.id != 'checkBalance' && button.id != 'withdraw')
         {button.disabled=false;}
     })
 
-    let nip = document.getElementById('nip');
+    let nip = document.getElementById('nip'); //returning nip id to draw '*' symbol
     return nip;
 }
 
 /*-------------------------------------------------------------------------------------------------*/
 function displayAccount(validAccount){
-
+    //asking the user to choose an operation
     const currentAccount = document.createElement('div');
     currentAccount.id = 'loggedAccount';
     currentAccount.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
@@ -77,7 +77,7 @@ function displayAccount(validAccount){
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-function enableOperations(){
+function enableOperations(){ //once user is logged, operations buttons are enabled
     document.getElementById('deposit').disabled=false;
     document.getElementById('checkBalance').disabled=false;
     document.getElementById('withdraw').disabled=false;
@@ -85,7 +85,7 @@ function enableOperations(){
 
 /*-------------------------------------------------------------------------------------------------*/
 
-function checkBalance(loggedAccount){
+function checkBalance(loggedAccount){ //checking user's balance
     const checkBalance = document.createElement('div');
     checkBalance.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
     checkBalance.innerHTML = `
@@ -95,12 +95,12 @@ function checkBalance(loggedAccount){
 }
 /*-------------------------------------------------------------------------------------------------*/
 
-function deposit(){
+function deposit(){ //displaying deposit information
     const loggedAccount = accounts[localStorage.getItem('desiredAccount')];
     const currentBalance = JSON.parse(localStorage.getItem(loggedAccount.name)).balance
 
     if(currentBalance < 990){
-
+        //display instructions when deposit is valid
         const validDeposit = document.createElement('div');
         validDeposit.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
         validDeposit.innerHTML = `
@@ -110,7 +110,7 @@ function deposit(){
         `
         screenArea.appendChild(validDeposit);
     }
-    else{
+    else{//display instructions when deposit is invalid
         const invalidDeposit = document.createElement('div');
         invalidDeposit.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
         invalidDeposit.innerHTML = `
@@ -125,7 +125,7 @@ function withdraw(){
     const loggedAccount = accounts[localStorage.getItem('desiredAccount')];
     const currentBalance = JSON.parse(localStorage.getItem(loggedAccount.name)).balance
     
-    if(currentBalance > 10){
+    if(currentBalance > 10){ //display instructions when withdrawal is valid
         const validWithdraw = document.createElement('div');
         validWithdraw.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
         validWithdraw.innerHTML = `
@@ -135,7 +135,7 @@ function withdraw(){
         `
         screenArea.appendChild(validWithdraw);
     }
-    else{
+    else{//display instructions when withdrawal is invalid
         const invalidWithdraw = document.createElement('div');
         invalidWithdraw.classList.add('d-flex', 'justify-content-center', 'flex-column', 'align-items-center');
         invalidWithdraw.innerHTML = `
@@ -146,12 +146,12 @@ function withdraw(){
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-keypadBtns.addEventListener('click', (e)=>{
+keypadBtns.addEventListener('click', (e)=>{ //main event handler
     
-    atmStatus = localStorage.getItem('atmStatus');
-    const value = e.target.value; 
+    atmStatus = localStorage.getItem('atmStatus'); //save current account
+    const value = e.target.value;  //read current button press
     
-    if(atmStatus == 'welcome' && value != undefined){
+    if(atmStatus == 'welcome' && value != undefined){ //screen when user enters NIP
         
         const account = accounts[value-1];
         localStorage.setItem('desiredAccount', value-1);
@@ -177,19 +177,17 @@ keypadBtns.addEventListener('click', (e)=>{
         hiddenNip = login();
     }
 /////////////////////////////////////////////////////////////////////////////////////////
-    else if(atmStatus == 'login'){
-        console.log(hiddenNip.textContent);
-        console.log(actualNip);
-        console.log(accounts[localStorage.getItem('desiredAccount')].NIP);
-        if(value != 'cancel' && value != 'clear' && value != 'enter' && hiddenNip.textContent != '****'){
+    else if(atmStatus == 'login'){ // validates NIP input to log user
+
+        if(value != 'cancel' && value != 'clear' && value != 'enter' && hiddenNip.textContent != '****' && e.target.classList.value.includes('nmbr')){
             hiddenNip.textContent += '*';
             actualNip += value;
         }        
-        else if(value == 'clear'){
+        else if(value == 'clear'){ //clears input
             hiddenNip.textContent = '';
             actualNip = '';
         }
-        else if(value == 'cancel'){
+        else if(value == 'cancel'){ //cancels operation and goes to main screen
             hiddenNip.textContent = '';
             actualNip = '';
             clearScreen();
@@ -199,8 +197,8 @@ keypadBtns.addEventListener('click', (e)=>{
            
             const desiredAccount = accounts[localStorage.getItem('desiredAccount')];
 
-            if(desiredAccount.NIP == actualNip){ 
-                localStorage.setItem('atmStatus', 'logged');
+            if(desiredAccount.NIP == actualNip){ //user enters valid NIP
+                localStorage.setItem('atmStatus', 'logged'); //updating ATM STATE
                 //atmStatus = localStorage.getItem('atmStatus')
                 hiddenNip.textContent = '';
                 actualNip = '';
@@ -208,27 +206,28 @@ keypadBtns.addEventListener('click', (e)=>{
                 displayAccount(desiredAccount);
                 enableOperations();
             }
-            else{
+            else{ //user enters invalid NIP
                 swal("Enter the right NIP",'','error');
                 hiddenNip.textContent = '';
                 actualNip = '';
+
             }
         }
     }
 //////////////////////////////////////////////////////////////////////////////////////////////
-    else if(atmStatus == 'logged'){
-        if(value == 'checkBalance'){
+    else if(atmStatus == 'logged'){ //once user is logged, it can perform operations
+        if(value == 'checkBalance'){ //checking balance
             const loggedAccount = accounts[localStorage.getItem('desiredAccount')];
             
             clearScreen();
             checkBalance(loggedAccount);
         }
 
-        else if(value == 'deposit'){
+        else if(value == 'deposit'){ //depositing
             
             document.getElementById('checkBalance').disabled = true;
             document.getElementById('withdraw').disabled = true;
-            localStorage.setItem('atmStatus', 'deposit');
+            localStorage.setItem('atmStatus', 'deposit'); //updating ATM STATE
 
             clearScreen();
             deposit();
@@ -239,7 +238,7 @@ keypadBtns.addEventListener('click', (e)=>{
 
             document.getElementById('checkBalance').disabled = true;
             document.getElementById('deposit').disabled = true;
-            localStorage.setItem('atmStatus', 'withdraw');
+            localStorage.setItem('atmStatus', 'withdraw'); //updating ATM STATE
 
             clearScreen();
             withdraw();
@@ -256,7 +255,7 @@ keypadBtns.addEventListener('click', (e)=>{
     else if(atmStatus == 'deposit'){
         let amountToDeposit = document.querySelector('.deposit');
 
-        if(e.target.classList.value.includes('nmbr')){
+        if(e.target.classList.value.includes('nmbr')){ //amout field updated if a number is received
             if(amountToDeposit.textContent.length < 3){
                 amountToDeposit.textContent += value
             }
@@ -266,19 +265,21 @@ keypadBtns.addEventListener('click', (e)=>{
             amountToDeposit.textContent = ''
         }
 
-        else if (value == 'cancel'){
+        else if (value == 'cancel'){ //cancel triggers previous STATE
             localStorage.setItem('atmStatus', 'logged');
             clearScreen();
             displayAccount( accounts[localStorage.getItem('desiredAccount')]);
         }
 
-        else if(value == 'enter'){
-            
+        else if(value == 'enter'){// when user hits enter button
+            //getting current account data
             const loggedAccount = accounts[localStorage.getItem('desiredAccount')];
             const currentBalance = JSON.parse(localStorage.getItem(loggedAccount.name)).balance
     
+            //validating if deposit does not exceeds allowed amount
             if(amountToDeposit.textContent != '' && Number(amountToDeposit.textContent) <= (990 - currentBalance)){
                 
+                //validating if user enters or not 0 as amount to deposit
                 if(amountToDeposit.textContent != '0' && amountToDeposit.textContent != '00' && amountToDeposit.textContent != '000'){
                     
                     accountToUpdate = accounts[localStorage.getItem('desiredAccount')];
@@ -326,7 +327,7 @@ else if(atmStatus == 'withdraw'){
         
         const loggedAccount = accounts[localStorage.getItem('desiredAccount')];
         const currentBalance = JSON.parse(localStorage.getItem(loggedAccount.name)).balance
-        console.log(currentBalance);//////////
+        
         if(amountToWithdraw.textContent != '' && (currentBalance - Number(amountToWithdraw.textContent) >= 10)){
             
             if(amountToWithdraw.textContent != '0' && amountToWithdraw.textContent != '00' && amountToWithdraw.textContent != '000'){

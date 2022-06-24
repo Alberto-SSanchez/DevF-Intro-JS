@@ -5,8 +5,8 @@
 
 #interface{
     background-color: rgb(0, 149, 255);
-    width: 600px;
-    height: 350px;
+    width: 700px;
+    height: 400px;
     border: 30px solid rgb(60, 60, 60);
 }
 
@@ -20,6 +20,7 @@ body{ min-width: 800px;}
 
 #keypad{
     background-color: rgb(88, 88, 88);
+    height: 250px;
 }
 
 .sides{
@@ -28,4 +29,8 @@ body{ min-width: 800px;}
 
 .deposit, .withdraw, #nip{
     border-radius: 10px;
+}
+
+#zero{
+    width: 800px;
 }
